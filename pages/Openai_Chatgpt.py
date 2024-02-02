@@ -14,7 +14,7 @@ with st.expander("Decsription and features"):
 with st.expander("Assistant created within Streamlit"):
   st.write('chat')
   assistant = client.beta.assistant.create(
-    name="")
+    name="Health Guru")
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
   st.write('chat')
   assistant_id = "asst_D1wKhK6VfhH6Cp67HpDaEtaT"
