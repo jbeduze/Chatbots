@@ -8,4 +8,12 @@ openai
 langchain
   #openai
 streamlit-chat
+faiss-cpu
+tiktoken
+InstructorEmbedding
+sentecne-transformers
+python-dotenv
+pandas
+    #used for web doc. retrieval
+trafilatura
 
