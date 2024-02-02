@@ -5,7 +5,7 @@ streamlit
 openai
 
 #for Langchain assistants
-lanchain
+langchain
   #openai
 streamlit-chat
 
