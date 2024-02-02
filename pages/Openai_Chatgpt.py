@@ -1,4 +1,6 @@
 import streamlit as st
+import time
+import openai
 
 st.header('OpenAI Chatbots')
 with st.expander("Decsription and features"):
@@ -11,8 +13,21 @@ with st.expander("Decsription and features"):
   2nd- from within the OpenAI asssitant creator""")
 with st.expander("Assistant created within Streamlit"):
   st.write('chat')
-  assistant = client.beeta.assistant.create(
+  assistant = client.beta.assistant.create(
     name="")
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
   st.write('chat')
+  assistant_id = "asst_D1wKhK6VfhH6Cp67HpDaEtaT"
+  client = openai
 
+  if "start_chat" not in st.session_state:
+    st.session_state.start_chat = False
+  if "thread_id" not in st.session_state:
+    st.session_state.thread_id = None
+  
+  openapi.api_key= ""
+  
+  if st.button("Start Chat"):
+    st.session_stae.start_chat= True
+    thread = Client.beta.threads.create()
+    st.session_state.thread_id = thread_id
