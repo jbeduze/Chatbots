@@ -25,10 +25,10 @@ with st.expander("Assistant created within OpenAI and called to Streamlit"):
   if "thread_id" not in st.session_state:
     st.session_state.thread_id = None
   
-  openai.api_key= secrets.toml["openai.api_key"]
+  openai.api_key= st.secrets["openai.api_key"]
   
   if st.button("Start Chat"):
-    st.session_stae.start_chat= True
+    st.session_state.start_chat= True
     thread = Client.beta.threads.create()
     st.session_state.thread_id = thread_id
     
