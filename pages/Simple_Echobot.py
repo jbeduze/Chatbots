@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header ("simple Echobot")
+st.header ("Simple Echobot")
 
 with st.expander("Descriptions and features"):
   st.write("just a nice set up for chatbots!")
