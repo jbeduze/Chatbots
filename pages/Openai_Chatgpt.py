@@ -29,7 +29,7 @@ with st.expander("Assistant created within OpenAI and called to Streamlit"):
   
   if st.button("Start Chat"):
     st.session_state.start_chat= True
-    thread = Client.beta.threads.create()
+    thread = client.beta.threads.create()
     st.session_state.thread_id = thread_id
     
   if st.button("Exit Chat"):
