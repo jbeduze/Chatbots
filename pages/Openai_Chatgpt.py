@@ -12,7 +12,7 @@ with st.expander("Decsription and features"):
 with st.expander("Assistant created within Streamlit"):
   st.write('chat')
   assistant = client.beeta.assistant.create(
-    name="
+    name="")
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
   st.write('chat')
 
