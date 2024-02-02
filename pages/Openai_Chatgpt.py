@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-import openai
+import OpenAI
 
 st.header('OpenAI Chatbots')
 with st.expander("Decsription and features"):
