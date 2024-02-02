@@ -4,3 +4,8 @@ streamlit
 #for openai assistants
 openai
 
+#for Langchain assistants
+lanchain
+  #openai
+streamlit-chat
+
