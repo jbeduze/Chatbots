@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-import OpenAI
+import openai
 
 st.header('OpenAI Chatbots')
 with st.expander("Decsription and features"):
@@ -31,3 +31,8 @@ with st.expander("Assistant created within OpenAI and called to Streamlit"):
     st.session_stae.start_chat= True
     thread = Client.beta.threads.create()
     st.session_state.thread_id = thread_id
+    
+  if st.button("Exit Chat"):
+    st.session_state.messages = [] #clear the chat history
+    st.session_state.start_chat = False #reset the chat state
+    st.session_state.thread_id = None
