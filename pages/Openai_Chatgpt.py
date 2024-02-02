@@ -11,10 +11,10 @@ with st.expander("Decsription and features"):
   1st- from within the python code
   
   2nd- from within the OpenAI asssitant creator""")
-with st.expander("Assistant created within Streamlit"):
-  st.write('chat')
-  assistant = client.beta.assistant.create(
-    name="Health Guru")
+# with st.expander("Assistant created within Streamlit"):
+#   st.write('chat')
+#   assistant = client.beta.assistant.create(
+#     name="Health Guru")
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
   st.write('chat')
   assistant_id = "asst_D1wKhK6VfhH6Cp67HpDaEtaT"
