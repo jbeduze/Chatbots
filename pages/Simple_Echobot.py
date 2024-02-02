@@ -18,7 +18,7 @@ with st.expander("Chatbot", expanded=True):
     with st.chat_message("user"):
       st.markdown(prompt)
 #user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.message.append({"role": "user", "content": prompt})
   
     response = f"echo: {prompt}"
     with st.chat_message("assistant"):
