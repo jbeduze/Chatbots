@@ -24,4 +24,4 @@ with st.expander("Chatbot", expanded=True):
     with st.chat_message("assistant"):
       st.markdown(response)
   #assistant messsage to chat history  
-    st.session_state.messages.append({"role": "aassistant", "content": response})
+    st.session_state.message.append({"role": "assistant", "content": response})
