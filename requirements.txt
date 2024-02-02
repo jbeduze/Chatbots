@@ -1,2 +1,6 @@
+#needed for all applications
 streamlit
+
+#for openai assistants
 openai
+time
