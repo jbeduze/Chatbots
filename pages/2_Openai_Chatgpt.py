@@ -13,13 +13,15 @@ with st.expander("Decsription and features"):
   2nd- from within the OpenAI asssitant creator""")
 with st.expander("Assistant created within Streamlit"):
   st.write('Chatgpt Clone')
-  openai.api_key = st.secrets["OPENAI_API_KEY"]
+  OPEN_API_KEY = st.secrets["OPENAI_API_KEY"]
 
   if "openai_model" not in session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
   #initialize chat history
   if "messages" not in sessions_state:
     st.session_state.messages= []
+
+"---"
     
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
   st.write('chat')
