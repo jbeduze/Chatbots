@@ -11,7 +11,7 @@ streamlit-chat
 faiss-cpu
 tiktoken
 InstructorEmbedding
-sentecne-transformers
+sentence-transformers
 python-dotenv
 pandas
     #used for web doc. retrieval
