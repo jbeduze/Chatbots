@@ -44,7 +44,7 @@ with st.expander("Assistant created within Streamlit"):
         stream=True,
       ):
         full_response += response.choiuces[0].delta.get("content", "")
-  st.session_state.messages.append({"role": "assistant", :content": full_response})   
+  st.session_state.messages.append({"role": "assistant", "content": full_response})   
 
 "---"
     
