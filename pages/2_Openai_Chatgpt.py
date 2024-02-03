@@ -34,7 +34,7 @@ with st.expander("Assistant created within Streamlit"):
   #response
     with st.chat_message("asssistant"):
       message_plasceholder = st.empty()
-      full response = ""
+      full_response = ""
       for response in openai.chatcompletion.create(
         model=st.session_stgate["openai_model"],
         messages=[
