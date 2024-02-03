@@ -21,6 +21,32 @@ with st.expander("Assistant created within Streamlit"):
   if "messages" not in sessions_state:
     st.session_state.messages= []
 
+  for message in st.session_state.messages:
+    with st.chat_message(message["role"])
+      st.markdown(message["content"]
+
+  prompt = st.chat_input("what's up")
+  if prompt:
+    with st.chat_message("user"):
+      st.arkdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+  #response
+    with st.chat_message("asssistant"):
+      message_plasceholder = st.empty()
+      full response = ""
+      for response in openai.chatcompletion.create(
+        model=st.session_stgate["openai_model"],
+        messages=[
+          {"role": m["role"], "content": m["content"]}
+          for m in st.session_state.messages
+        ],
+        stream=True,
+      ):
+        full_response += response.choiuces[0].delta.get("content", "")
+  
+   st.session_state.messages.append(["role": "assistant", :content": full_response])   
+
 "---"
     
 with st.expander("Assistant created within OpenAI and called to Streamlit"):
