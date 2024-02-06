@@ -15,7 +15,7 @@ with st.expander("Assistant created within Streamlit"):
   st.write('Chatgpt Clone')
   openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-  if openai_model not in session_state:
+  if "openai_model" not in session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
   #initialize chat history
   if "messages" not in sessions_state:
@@ -28,22 +28,22 @@ with st.expander("Assistant created within Streamlit"):
   prompt = st.chat_input("what's up")
   if prompt:
     with st.chat_message("user"):
-      st.arkdown(prompt)
+      st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
   #response
     with st.chat_message("asssistant"):
-      message_plasceholder = st.empty()
+      message_placeholder = st.empty()
       full_response = ""
       for response in openai.chatcompletion.create(
-        model=st.session_stgate["openai_model"],
+        model=st.session_state["openai_model"],
         messages=[
           {"role": m["role"], "content": m["content"]}
           for m in st.session_state.messages
         ],
         stream=True,
       ):
-        full_response += response.choiuces[0].delta.get("content", "")
+        full_response += response.choices[0].delta.get("content", "")
   st.session_state.messages.append({"role": "assistant", "content": full_response})   
 
 "---"
