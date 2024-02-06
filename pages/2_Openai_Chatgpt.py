@@ -35,7 +35,7 @@ with st.expander("Assistant created within Streamlit"):
                 model=st.session_state["openai_model"],
                 messages=[
                     {"role": m["role"], "content": m["content"]}
-                    for m in st.sesion_state.messages
+                    for m in st.session_state.messages
                 ],
                 stream=True,
             ):
