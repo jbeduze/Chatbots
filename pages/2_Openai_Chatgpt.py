@@ -45,7 +45,7 @@ with st.expander("Assistant created within Streamlit"):
         st.session_state.messages.apend({"role": "assistant", "content": full_response})
 
 # Correct the API Key access
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+#openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Example correction for thread creation and message handling in OpenAI Assistant
 # This is more of a placeholder as the actual implementation would depend on OpenAI's API
