@@ -24,11 +24,25 @@ with st.expander("Assistant created within Streamlit"):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    prompt = st.text_input("What's up?")
-    if prompt:
+    if prompt:= st.chat_input("How's it hanging?"):
         st.session_state.messages.append({"role": "user", "content": prompt})
-        # Simulate an assistant response (replace with your actual OpenAI API call)
-        st.session_state.messages.append({"role": "assistant", "content": "Simulated response to '" + prompt + "'"})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        with st.chat_message("assistant"):
+            message_placeholder = st.empty()
+            full_response = ""
+            for response in openai.chatcompletion.create(
+                model=st.session_state["openai_model"],
+                messages=[
+                    {"role": m["role"], "content": m["content"]}
+                    for m in st.sesion_state.messages
+                ],
+                stream=True,
+            ):
+                full_response += response.choices[0].delta.get("content", "")
+                message_placeholder.markdown(full_response + " ")
+            message_placeholder.markdown(full_response)
+        st.session_state.messages.apend({"role": "assistant", "content": full_response})
 
 # Correct the API Key access
 openai.api_key = st.secrets["OPENAI_API_KEY"]
