@@ -3,7 +3,7 @@ import openai
 import time
 
 st.header('OpenAI Simple Chatbots')
-
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 with st.expander("Description and features"):
     st.write("""Openai's chagpt software read by python in a streamlit UI.
         2 different examples are below. The main difference is where the directions for the chatbot originate.
@@ -11,7 +11,7 @@ with st.expander("Description and features"):
         2nd- from within the OpenAI asssitant creator""")
 
 with st.expander("Assistant created within Streamlit"):
-    openai.api_key = st.secrets["OPENAI_API_KEY"]
+    
         # Initialize session state for openai_model
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = "gpt-3.5-turbo"
