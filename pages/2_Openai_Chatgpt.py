@@ -1,75 +1,111 @@
 import streamlit as st
-import time
 import openai
 
-if "openai_model" not in session_state:
+# Initialize session state for openai_model if not already done
+if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
+
+# Initialize session state for messages if not already done
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 st.header('OpenAI Chatbots')
-with st.expander("Decsription and features"):
-  st.write("""Openai's chagpt software read by python in a streamlit UI.
-  
-  2 different examples are below. The main difference is where the directions for the chatbot originate.
-  
-  1st- from within the python code- Streamlit provides code for the build out of this app: https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps as well as the youtube video: https://www.youtube.com/watch?v=sBhK-2K9bUc&t=303s 
-  
-  2nd- from within the OpenAI asssitant creator""")
-  
+
+with st.expander("Description and features"):
+    st.write("""Your description here...""")
+
 with st.expander("Assistant created within Streamlit"):
-  st.write('Chatgpt Clone')
-  openai.api_key = st.secrets["OPENAI_API_KEY"]
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-  if "openai_model" not in session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
-  #initialize chat history
-  if "messages" not in sessions_state:
-    st.session_state.messages= []
+    # Display existing messages
+    for message in st.session_state.messages:
+        st.experimental_chat(message["role"], message["content"])
 
-  for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-      st.markdown(message["content"])
+    prompt = st.text_input("What's up?")
+    if prompt:
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        # Simulate an assistant response (replace with your actual OpenAI API call)
+        st.session_state.messages.append({"role": "assistant", "content": "Simulated response to '" + prompt + "'"})
 
-  prompt = st.chat_input("what's up")
-  if prompt:
-    with st.chat_message("user"):
-      st.markdown(prompt)
-    st.session_state.messages.append({"role": "user", "content": prompt})
+# Correct the API Key access
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-  #response
-    with st.chat_message("asssistant"):
-      message_placeholder = st.empty()
-      full_response = ""
-      for response in openai.chatcompletion.create(
-        model=st.session_state["openai_model"],
-        messages=[
-          {"role": m["role"], "content": m["content"]}
-          for m in st.session_state.messages
-        ],
-        stream=True,
-      ):
-        full_response += response.choices[0].delta.get("content", "")
-  st.session_state.messages.append({"role": "assistant", "content": full_response})   
+# Example correction for thread creation and message handling in OpenAI Assistant
+# This is more of a placeholder as the actual implementation would depend on OpenAI's API
 
-"---"
-    
-with st.expander("Assistant created within OpenAI and called to Streamlit"):
-  st.write('chat')
-  assistant_id = "asst_D1wKhK6VfhH6Cp67HpDaEtaT"
-  client = openai
 
-  if "start_chat" not in st.session_state:
-    st.session_state.start_chat = False
-  if "thread_id" not in st.session_state:
-    st.session_state.thread_id = None
+# import streamlit as st
+# import time
+# import openai
+
+# if "openai_model" not in session_state:
+#     st.session_state["openai_model"] = "gpt-3.5-turbo"
+
+# st.header('OpenAI Chatbots')
+# with st.expander("Decsription and features"):
+#   st.write("""Openai's chagpt software read by python in a streamlit UI.
   
-  openai.api_key= st.streamlit.secrets.OPENAI_API_KEY
+#   2 different examples are below. The main difference is where the directions for the chatbot originate.
   
-  if st.button("Start Chat"):
-    st.session_state.start_chat= True
-    thread = client.beta.threads.create()
-    st.session_state.thread_id = thread_id
+#   1st- from within the python code- Streamlit provides code for the build out of this app: https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps as well as the youtube video: https://www.youtube.com/watch?v=sBhK-2K9bUc&t=303s 
+  
+#   2nd- from within the OpenAI asssitant creator""")
+  
+# with st.expander("Assistant created within Streamlit"):
+#   st.write('Chatgpt Clone')
+#   openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+#   if "openai_model" not in session_state:
+#     st.session_state["openai_model"] = "gpt-3.5-turbo"
+#   #initialize chat history
+#   if "messages" not in sessions_state:
+#     st.session_state.messages= []
+
+#   for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#       st.markdown(message["content"])
+
+#   prompt = st.chat_input("what's up")
+#   if prompt:
+#     with st.chat_message("user"):
+#       st.markdown(prompt)
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+
+#   #response
+#     with st.chat_message("asssistant"):
+#       message_placeholder = st.empty()
+#       full_response = ""
+#       for response in openai.chatcompletion.create(
+#         model=st.session_state["openai_model"],
+#         messages=[
+#           {"role": m["role"], "content": m["content"]}
+#           for m in st.session_state.messages
+#         ],
+#         stream=True,
+#       ):
+#         full_response += response.choices[0].delta.get("content", "")
+#   st.session_state.messages.append({"role": "assistant", "content": full_response})   
+
+# "---"
     
-  if st.button("Exit Chat"):
-    st.session_state.messages = [] #clear the chat history
-    st.session_state.start_chat = False #reset the chat state
-    st.session_state.thread_id = None
+# with st.expander("Assistant created within OpenAI and called to Streamlit"):
+#   st.write('chat')
+#   assistant_id = "asst_D1wKhK6VfhH6Cp67HpDaEtaT"
+#   client = openai
+
+#   if "start_chat" not in st.session_state:
+#     st.session_state.start_chat = False
+#   if "thread_id" not in st.session_state:
+#     st.session_state.thread_id = None
+  
+#   openai.api_key= st.streamlit.secrets.OPENAI_API_KEY
+  
+#   if st.button("Start Chat"):
+#     st.session_state.start_chat= True
+#     thread = client.beta.threads.create()
+#     st.session_state.thread_id = thread_id
+    
+#   if st.button("Exit Chat"):
+#     st.session_state.messages = [] #clear the chat history
+#     st.session_state.start_chat = False #reset the chat state
+#     st.session_state.thread_id = None
