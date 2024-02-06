@@ -2,10 +2,6 @@ import streamlit as st
 import openai
 import time
 
-
-
-
-
 st.header('OpenAI Simple Chatbots')
 
 with st.expander("Description and features"):
