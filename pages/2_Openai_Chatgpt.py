@@ -58,7 +58,7 @@ with st.expander("Assistant created within OpenAI and called to Streamlit"):
   if "thread_id" not in st.session_state:
     st.session_state.thread_id = None
   
-  openai.api_key= st.streamlit.secrets.toml["openai.api_key"]
+  openai.api_key= st.streamlit.secrets.OPENAI_API_KEY
   
   if st.button("Start Chat"):
     st.session_state.start_chat= True
