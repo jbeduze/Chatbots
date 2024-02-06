@@ -2,6 +2,9 @@ import streamlit as st
 import time
 import openai
 
+if "openai_model" not in session_state:
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
+
 st.header('OpenAI Chatbots')
 with st.expander("Decsription and features"):
   st.write("""Openai's chagpt software read by python in a streamlit UI.
@@ -11,6 +14,7 @@ with st.expander("Decsription and features"):
   1st- from within the python code- Streamlit provides code for the build out of this app: https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps as well as the youtube video: https://www.youtube.com/watch?v=sBhK-2K9bUc&t=303s 
   
   2nd- from within the OpenAI asssitant creator""")
+  
 with st.expander("Assistant created within Streamlit"):
   st.write('Chatgpt Clone')
   openai.api_key = st.secrets["OPENAI_API_KEY"]
