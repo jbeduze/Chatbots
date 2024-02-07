@@ -27,10 +27,10 @@ with st.expander("Assistant created within Streamlit"):
           st.markdown(message["content"])
 
     if prompt:= st.chat_input("How's it hanging?"):
-      st.session_state.messages.append({"role": "user", "content": prompt})
       with st.chat_message("user"):
           st.markdown(prompt)
-          
+      st.session_state.messages.append({"role": "user", "content": prompt})
+      
       with st.chat_message("assistant"):
           message_placeholder = st.empty()
           full_response = ""
