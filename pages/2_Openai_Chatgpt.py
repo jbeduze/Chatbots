@@ -1,10 +1,11 @@
 
 import streamlit as st
 import openai
+from openai import OpenAI
 import time
 
 st.header('OpenAI Simple Chatbots')
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+client= OpenAI(api_key=st.secrets["OPENAI_API_KEY"]
 with st.expander("Description and features"):
     st.write("""Openai's chagpt software read by python in a streamlit UI.
         2 different examples are below. The main difference is where the directions for the chatbot originate.
@@ -40,11 +41,9 @@ with st.expander("Assistant created within Streamlit"):
                     for m in st.session_state.messages
                 ],
                 stream=True,
-            ):
-                full_response += response.choices[0].delta.get("content", "")
-                message_placeholder.markdown(full_response + " ")
-            message_placeholder.markdown(full_response)
-        st.session_state.messages.apend({"role": "assistant", "content": full_response})
+            )
+            response = st.write_stream(stream)
+        st.session_state.messages.append({"role": "assistant", "content": response})
 #_____________________________________________________________________________________________
 # Correct the API Key access
 #openai.api_key = st.secrets["OPENAI_API_KEY"]
