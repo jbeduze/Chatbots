@@ -13,7 +13,6 @@ with st.expander("Description and features"):
         2nd- from within the OpenAI asssitant creator""")
 
 with st.expander("Assistant created within Streamlit"):
-    
         # Initialize session state for openai_model
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = "gpt-3.5-turbo"
