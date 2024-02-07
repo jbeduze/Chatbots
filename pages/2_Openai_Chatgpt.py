@@ -6,6 +6,7 @@ import time
 
 st.header('OpenAI Simple Chatbots')
 client= OpenAI(api_key=st.secrets["OPENAI_API_KEY"]
+               
 with st.expander("Description and features"):
     st.write("""Openai's chagpt software read by python in a streamlit UI.
         2 different examples are below. The main difference is where the directions for the chatbot originate.
