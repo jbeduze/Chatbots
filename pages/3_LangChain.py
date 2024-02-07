@@ -1,8 +1,8 @@
 import streamlit as st
 # Assuming utils, OpenAI, and ConversationChain are defined in your environment
 import utils
-from your_openai_wrapper import OpenAI  # Placeholder import
-from your_conversation_chain_module import ConversationChain  # Placeholder import
+from openai import OpenAI  # Placeholder import
+import ConversationChain  # Placeholder import
 
 
 st.title('Welcome to the Langchain Chatbot')
