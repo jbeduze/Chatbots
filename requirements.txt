@@ -6,6 +6,7 @@ openai
 
 #for Langchain assistants
 langchain
+utils
   #openai
 streamlit-chat
 faiss-cpu
