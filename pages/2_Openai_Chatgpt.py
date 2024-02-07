@@ -14,7 +14,7 @@ with st.expander("Description and Features"):
   )
 
 with st.expander("Assistant created within Streamlit"):
-  client= OpenAI(api_key=st.secrets["OPENAI_API_KEY"]
+  #client= OpenAI(api_key=st.secrets["OPENAI_API_KEY"]
       # Initialize session state for openai_model
   if "openai_model" not in st.session_state:
       st.session_state["openai_model"] = "gpt-3.5-turbo"
