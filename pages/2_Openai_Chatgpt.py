@@ -1,37 +1,81 @@
 import openai
-from openai import OpenAI
 import streamlit as st
 
 st.title("ChatGPT-like clone")
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+# Assuming you've set the API key in your Streamlit secrets correctly
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4"
-    
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Display previous conversations
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    with st.container():
+        st.write(f"{message['role']}: {message['content']}")
 
-if prompt := st.chat_input("What is up?"):
+# Input from the user
+prompt = st.text_input("What is up?")
+if st.button("Send"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    with st.chat_message("assistant"):
-        stream = client.chat.completions.create(
+    
+    try:
+        response = openai.ChatCompletion.create(
             model=st.session_state["openai_model"],
             messages=[
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
-            ],
-            stream=True,
+            ]
         )
-        response = st.write_stream(stream)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        # Append the AI's response to the conversation history
+        st.session_state.messages.append({"role": "assistant", "content": response.choices[0].message['content']})
+    except Exception as e:
+        st.error(f"Error calling OpenAI: {str(e)}")
+
+# Optionally, display the conversation after adding the new messages
+for message in st.session_state.messages:
+    with st.container():
+        st.write(f"{message['role']}: {message['content']}")
+
+
+
+# import openai
+# from openai import OpenAI
+# import streamlit as st
+
+# st.title("ChatGPT-like clone")
+
+# client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+# if "openai_model" not in st.session_state:
+#     st.session_state["openai_model"] = "gpt-4"
+    
+# if "messages" not in st.session_state:
+#     st.session_state.messages = []
+
+# for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#         st.markdown(message["content"])
+
+# if prompt := st.chat_input("What is up?"):
+#     st.session_state.messages.append({"role": "user", "content": prompt})
+#     with st.chat_message("user"):
+#         st.markdown(prompt)
+
+#     with st.chat_message("assistant"):
+#         stream = client.chat.completions.create(
+#             model=st.session_state["openai_model"],
+#             messages=[
+#                 {"role": m["role"], "content": m["content"]}
+#                 for m in st.session_state.messages
+#             ],
+#             stream=True,
+#         )
+#         response = st.write_stream(stream)
+#     st.session_state.messages.append({"role": "assistant", "content": response})
 
 
 # import streamlit as st
