@@ -1,4 +1,5 @@
 # 0. Import Libraries
+import OpenAI
 import streamlit as st
 from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
@@ -29,7 +30,7 @@ uploaded_file = st.file_uploader('Upload an article', type='txt')
 
 # 6. Query text form
 with st.form('my Form', clear_on_submit=True):
-    query_text = st.text_input('Enter your question:', placeholder='Please provide a short summary.', disabled=not uploaded_file)
+    query_text = st.text_input('Enter your question:', placeholder='File must be uploaded, then Pplease provide a short summary.', disabled=not uploaded_file)
     # Form submission button
     submitted = st.form_submit_button('Submit')
 
