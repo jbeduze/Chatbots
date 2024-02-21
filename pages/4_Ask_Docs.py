@@ -15,11 +15,11 @@ page_description = "Allows users to view page1."
 overview_header = "Overview"
 overview_text = f"**{page_subtitle}** {page_description.lower()}"
 
-# 2. Set Page Title
-ps.set_title(varTitle=page_title, varSubtitle=page_subtitle)
+# # 2. Set Page Title
+# ps.set_title(varTitle=page_title, varSubtitle=page_subtitle)
 
-# 3. Set Page Overview
-ps.set_page_overview(varHeader=overview_header, varText=overview_text)
+# # 3. Set Page Overview
+# ps.set_page_overview(varHeader=overview_header, varText=overview_text)
 
 # 4. Import variables
 openai_api_key = st.secrets.openai.api_key
