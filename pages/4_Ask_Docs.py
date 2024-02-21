@@ -61,5 +61,6 @@ def generate_response(uploaded_file, openai_api_key, query_text):
         qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=openai_api_key), chain_type='stuff', retriever=retriever)
         return qa.run(query_text)
 
-if len(result):
-    st.info(response)
+result = generate_response(uploaded_file, openai_api_key, query_text)
+if result:  # This checks if result is not None or an empty list/string
+    st.info(result)  # Assuming result is the response you want to display
