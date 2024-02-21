@@ -22,7 +22,7 @@ overview_text = f"**{page_subtitle}** {page_description.lower()}"
 # ps.set_page_overview(varHeader=overview_header, varText=overview_text)
 
 # 4. Import variables
-openai_api_key = st.secrets.API_KEY
+openai_api_key = st.secrets["API_KEY"]
 
 # 5. File upload
 uploaded_file = st.file_uploader('Upload an article', type='txt')
