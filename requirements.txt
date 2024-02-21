@@ -17,4 +17,6 @@ python-dotenv
 pandas
     #used for web doc. retrieval
 trafilatura
+chromadb
+
 
