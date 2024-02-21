@@ -24,8 +24,6 @@ overview_text = f"**{page_subtitle}** {page_description.lower()}"
 # 4. Import variables
 openai_api_key = st.secrets.openai.api_key
 
-
-
 # 5. File upload
 uploaded_file = st.file_uploader('Upload an article', type='txt')
 
